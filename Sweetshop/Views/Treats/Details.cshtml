@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@* @using System.Security.Claims *@
+@model SweetShop.Models.Treat
+
+<h2>Treat Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This treat does not have any flavors</p>
+}
+else
+{
+  <h4>Flavors this treat belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Flavor.Name</li>
+    @*Wrapped the 'Delete Flavor' ActionLink in an if statement to only show the link if the user is authenticated and the 'owner' of the item*@
+    @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+    {   
+      @using (Html.BeginForm("DeleteFlavor", "Treats"))
+      {
+        @Html.Hidden("joinId", @join.FlavorTreatId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+@*Wrapped the Create, Update and Delete ActionLinks in an if statement to only show the link if the user is authenticated and the 'owner' of the item*@
+@if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+{
+  <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+  <p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
+  <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+}
