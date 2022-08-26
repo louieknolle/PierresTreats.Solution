@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetShop.Models;
+@using System.Security.Claims
+@model IEnumerable<SweetShop.Models.Treat>
+
+<h1>Welcome @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Flavor flavor in Model)
+    {
+      <li>@Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No treats have been added yet!</h3>
+}
+
+@*Wrapped the 'Add New Item' ActionLink in an if statement to only show the link if the user is authenticated*@
+@if (User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Add new treat", "Create")</p>
+}
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
