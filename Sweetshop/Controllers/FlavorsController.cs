@@ -47,8 +47,8 @@ namespace SweetShop.Controllers
       if (TreatId != 0)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavor.FlavorId, TreatId = TreatId});
-        _db.SaveChanges();
       }
+        _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
