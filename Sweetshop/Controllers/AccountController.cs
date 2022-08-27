@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using SweetShop.Models;
 using System.Threading.Tasks;
 using SweetShop.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.IO;
+using System.Security.Claims;
 
 namespace SweetShop.Controllers
 {
