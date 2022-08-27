@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-//new using directives
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -44,7 +42,7 @@ namespace SweetShop.Controllers
     [Authorize] 
     public ActionResult Create()
     {
-      ViewBag.FlavorId = new SelectList(_db.Categories, "FlavorId", "Name");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View();
     }
     
@@ -107,7 +105,7 @@ namespace SweetShop.Controllers
       {
         return RedirectToAction("Details", new {id = id});
       }
-      ViewBag.FlavorId = new SelectList(_db.Categories, "FlavorId", "Name"); 
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name"); 
       return View(thisTreat);
     }
 
@@ -121,7 +119,7 @@ namespace SweetShop.Controllers
       }
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = treat.TreatId});
     }
 
     // AddFlavor is updated to find the user and the item that matches the user id, then is routed based on that result. 
@@ -137,7 +135,7 @@ namespace SweetShop.Controllers
       {
         return RedirectToAction("Details", new {id = id});
       }
-      ViewBag.FlavorId = new SelectList(_db.Categories, "FlavorId", "Name");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
 
@@ -184,7 +182,7 @@ namespace SweetShop.Controllers
       var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = joinEntry.TreatId});
     }
   }
 }
