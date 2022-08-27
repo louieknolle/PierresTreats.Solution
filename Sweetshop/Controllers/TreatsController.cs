@@ -20,7 +20,7 @@ using System.Security.Claims;
 //////// 4. Views/Items/Index.cshtml has updates
 //////////////////////////////////////////////////////
 
-namespace SweetShop.Controller
+namespace SweetShop.Controllers
 {
   public class TreatsController : Controller
   {
