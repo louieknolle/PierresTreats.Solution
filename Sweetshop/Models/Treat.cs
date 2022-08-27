@@ -1,6 +1,7 @@
-
-
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace SweetShop.Models
 {
@@ -13,7 +14,6 @@ namespace SweetShop.Models
 
     public int TreatId { get; set; }
     public string Name { get; set; }
-    // public int PurchaseYear { get; set; }
     public string Description { get; set; }
     public virtual ApplicationUser User { get; set; } 
 
