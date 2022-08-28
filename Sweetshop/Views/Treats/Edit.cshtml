@@ -4,23 +4,26 @@
 
 @model SweetShop.Models.Treat
 
-<h2>Edit</h2>
+<div class="viewContainer">
+  <h2>Edit</h2>
+  <hr />
 
-<h4>@Html.DisplayFor(model => model.Name)</h4>
+  <h4>@Html.DisplayFor(model => model.Name)</h4>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.TreatId)
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.TreatId)
 
-  @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name)
-  @Html.LabelFor(model => model.Description)
-  @Html.EditorFor(model => model.Description)
+    <span class="form-control">@Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)</span>
+    <span class="form-control">@Html.LabelFor(model => model.Description)
+    @Html.EditorFor(model => model.Description)</span>
 
-  @Html.Label("Select flavor")
-  @Html.DropDownList("FlavorId")
+    <span class="form-control">@Html.Label("Select flavor")
+    @Html.DropDownList("FlavorId")</span>
 
-  <input type="submit" value="Save" />
-}
+    <input type="submit" value="Save" />
+  }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
+  <p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-primary btn-large" })</p>
+</div>

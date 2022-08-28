@@ -7,14 +7,14 @@
 <div class="text-center viewContainer row">
     <h2>Welcome to Pierre's Tasty Treats!</h2>
     <!-- && ViewBag.Flavors.Count -->
-    <div id="homeTreatsList" class="col-md-6">
+    <div id="homeTreatsList" class="col-md-6 text-center">
         @if (Model.Any())
         {
             <h4>Today's treats: </h4>
                 <ul>
                 @foreach (Treat treat in Model)
                 {
-                    <li>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId }): @treat.Description</li>
+                    <li>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId }, new { @class = "btn btn-light btn-sm align-self-center mx-auto"})</li>
                 }
                 </ul>
         }
@@ -28,11 +28,11 @@
     <div id="homeFlavorsList" class="col-md-6">
         @if (ViewBag.Flavors.Count != 0 )
         {
-            <h4>Flavors</h4>
+            <h4>Flavors:</h4>
             <ul>
                 @foreach (Flavor flavor in ViewBag.Flavors)
                 {
-                    <li><a href='@Url.Action("Details", "Flavors", new { id = flavor.FlavorId})'>@flavor.Name</a></li>
+                    <li>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId}, new { @class = "btn btn-light btn-sm align-self-center mx-auto"})</li>
                 }
             </ul>
         }

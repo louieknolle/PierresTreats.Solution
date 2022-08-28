@@ -25,17 +25,7 @@ else
 
 @if (User.Identity.IsAuthenticated)
     {
-      @using (Html.BeginForm("AddTreat", "Flavors"))
-      {
-        @Html.HiddenFor(model => model.FlavorId)
-
-        <div>
-          @Html.Label("Add treat")
-          @Html.DropDownList("TreatId", ViewBag.TreatId, "Add selection", new { @class = "form-control"})
-        </div>
-
-        <input type="submit" value="Add treat" />
-      }
+      <p>@Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId }, new { @class = "btn btn-primary btn-large"})</p>
     }
 
 <p>@Html.ActionLink("Back to flavors", "Index")</p>
