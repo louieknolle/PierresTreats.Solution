@@ -9,15 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-//////////////////////////////////////////////////////
-//////// Authorizing Create, Update and Delete of TreatsController.cs 
-//////////////////////////////////////////////////////
-//////// 1. Item.cs needs ApplicationUser property
-//////// 2. ItemsController.cs has various updates
-//////// 3. Views/Items/Details.cshtml has updates
-//////// 4. Views/Items/Index.cshtml has updates
-//////////////////////////////////////////////////////
-
 namespace SweetShop.Controllers
 {
   public class TreatsController : Controller
@@ -31,14 +22,12 @@ namespace SweetShop.Controllers
       _db = db;
     }
 
-    //Index Route updated to find all DB Treats
     public ActionResult Index()
     {
       List<Treat> userTreats = _db.Treats.ToList();
       return View(userTreats);
     }
 
-    //Create Route updated to Add Authorization
     [Authorize] 
     public ActionResult Create()
     {
@@ -62,24 +51,6 @@ namespace SweetShop.Controllers
       return RedirectToAction("Index");
     }
 
-    // In the Details route we need to find the user associated with the item so that in the view, we can show the edit, delete or add Flavor links if the item "belongs" to that user. Line 93 involves checking if the userId is null: if it is null then IsCurrentUser is set to false, if is not null, then the program evaluates whether userId is equal to thisItem.User.Id and returns true if so, false if not so.
-    // Line 93 can be refactored into an if statement like so:
-    // if (userId != null) 
-    // {
-    //   if (userId == thisItem.User.Id) 
-    //   {
-    //     ViewBag.IsCurrentUser = true;
-    //   }
-    //   else
-    //   {
-    //     ViewBag.IsCurrentUser = false;
-    //   }
-    // }
-    // else 
-    // {
-    //   ViewBag.IsCurrentUser = false;
-    // }
-    // Look at the Details view and how IsCurrentUser is used to help comprehend what is happening in the conditional using the ternary operator 
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats
@@ -92,7 +63,6 @@ namespace SweetShop.Controllers
       return View(thisTreat);
     }
 
-    // Edit Route is updated to find the user and the item that matches the user id, then is routed based on that result. 
     [Authorize]
     public async Task<ActionResult> Edit(int id)
     {
@@ -122,7 +92,6 @@ namespace SweetShop.Controllers
       return RedirectToAction("Details", new { id = treat.TreatId});
     }
 
-    // AddFlavor is updated to find the user and the item that matches the user id, then is routed based on that result. 
     [Authorize]
     public async Task<ActionResult> AddFlavor(int id)
     {
@@ -150,7 +119,6 @@ namespace SweetShop.Controllers
       return RedirectToAction("Index");
     }
 
-    // Delete route is updated to find the user and the item that matches the user id, then is routed based on that result. 
     [Authorize]
     public async Task<ActionResult> Delete(int id)
     {
