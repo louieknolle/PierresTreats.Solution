@@ -4,11 +4,14 @@
 
 @model SweetShop.Models.Treat
 
-<h2>Confirm treat delete?</h2>
-
-@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Description)
-@using (Html.BeginForm())
-{
-  <input type="submit" value="Delete" />
-}
-@Html.ActionLink("Back to Treats", "Index")
+<div class="viewContainer">
+  <h2>Confirm treat delete?</h2>
+  <hr />
+  
+  <h4>@Html.DisplayFor(model => model.Name)</h4>
+  @using (Html.BeginForm())
+  {
+    <input type="submit" value="Delete" />
+  }
+  @Html.ActionLink("Back to Treats", "Index", null, null, new { @class = "btn btn-primary btn-large" })
+</div>

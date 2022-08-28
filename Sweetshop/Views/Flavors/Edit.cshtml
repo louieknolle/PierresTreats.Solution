@@ -3,18 +3,19 @@
 }
 
 @model SweetShop.Models.Flavor
+<div class="viewContainer">
+  <h2>Edit</h2>
+  <hr />
+  <h4>@Html.DisplayFor(model => model.Name)</h4>
 
-<h2>Edit</h2>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.FlavorId)
 
-<h4>@Html.DisplayFor(model => model.Name)</h4>
+    <span class="form-control">@Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)</span>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.FlavorId)
-
-  @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name)
-
-  <input type="submit" value="Save" />
-}
-<p>@Html.ActionLink("Flavor List", "Index")</p>
+    <input type="submit" value="Save" />
+  }
+  <p>@Html.ActionLink("Flavor List", "Index", null, null, new { @class = "btn btn-primary btn-large" })</p>
+</div>

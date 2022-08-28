@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetShop.Models.Flavor
+
+<div class="viewContainer">
+  <h2>Add a treat</h2>
+
+  <h4>Add a treat to this flavor: @Html.DisplayFor(model => model.Name)</h4>
+
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.FlavorId)
+
+    <span class="form-control">@Html.Label("Select treat")
+    @Html.DropDownList("TreatId")</span>
+
+    <input type="submit" value="Save" />
+  }
+
+  <p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-primary btn-large" })</p>
+</div>
