@@ -35,7 +35,7 @@
   }
 
   <p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-primary btn-large" })</p>
-  @*Wrapped the Create, Update and Delete ActionLinks in an if statement to only show the link if the user is authenticated and the 'owner' of the item*@
+  
   @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
   {
     <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId }, new { @class = "btn btn-primary btn-large"})</p>
