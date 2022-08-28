@@ -4,10 +4,10 @@
 @using SweetShop.Models
 @model IEnumerable<SweetShop.Models.Treat>
 
-<div class="text-center">
+<div class="text-center viewContainer row">
     <h2>Welcome to Pierre's Tasty Treats!</h2>
     <!-- && ViewBag.Flavors.Count -->
-    <div id="homeTreatsList">
+    <div id="homeTreatsList" class="col-md-6">
         @if (Model.Any())
         {
             <h4>Today's treats: </h4>
@@ -25,7 +25,7 @@
         }
     </div>
 
-    <div id="homeFlavorsList">
+    <div id="homeFlavorsList" class="col-md-6">
         @if (ViewBag.Flavors.Count != 0 )
         {
             <h4>Flavors</h4>
@@ -40,6 +40,13 @@
         {
             <h4>Flavors</h4>
             <p>No flavors have been created!</p>
+        }
+    </div>
+
+    <div>
+        @if (!Model.Any() && ViewBag.Flavors.Count == 0)
+        {
+            <h5>Login to add confections!</h5>
         }
     </div>
     

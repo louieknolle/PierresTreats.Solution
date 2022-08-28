@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -15,4 +17,33 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #c6f1c6;
+  font-family: 'Poppins', sans-serif;
+  color: #0b80ee;
+}
+
+header {
+  background-color: #F1DCC6;
+}
+
+.col-md-6 {
+  margin-top: 2rem;
+}
+
+.btn {
+  display: block;
+  width: fit-content;
+  margin: .2rem;
+}
+
+.viewContainer {
+  background-color: #9DE79D;
+  margin: auto;
+  border-radius: .25rem;
+  padding: 1rem 2rem;
+}
+
+.form-control {
+  width: fit-content;
+  margin: .2rem;
 }
